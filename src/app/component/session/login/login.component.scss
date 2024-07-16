@@ -46,12 +46,6 @@
               margin-bottom: 20px;
               img {
                   height: 100px;
-                  color: #053c6d;
-                  filter: contrast(3.5) brightness(1.2);
-                  
-              color: var(--primary_color);
-                  image-rendering: -webkit-optimize-contrast;
-                  font-weight: bold;
               }
           }
           .logoText {
@@ -59,23 +53,11 @@
               word-break: break-word;
               line-height: 0.9;
           }
-          h4 {
-              text-transform: uppercase;
-              font-weight: bold;
-              margin-bottom: 50px;
-              line-height: 21px;
-          }
           .welcome-text {
               font-size: 35px; // according to XD
               text-align: center !important;
               font-weight: bold;
               color: var(--primary_color);
-          }
-          .link {
-              display: inline-block;
-              margin-top: 47px;
-              text-decoration: underline;
-              color: var(--black_color_90);
           }
       }
   }
@@ -95,37 +77,44 @@
   font-size: var(--small-font);
 }
 ::ng-deep {
+
   .mat-form {
-      .mat-form-field-infix {
-          // padding-top: unset !important;
-      }
-  }
-  .slick-dots {
-      li {
-          width: 14px;
-          height: 14px;
-          margin: 0;
-          button {
-              width: 14px;
-              height: 14px;
-              padding: 3px;
-              &:before {
-                  width: 14px;
-                  height: 14px;
-                  font-size: 8px;
-                  line-height: 14px;
-                  color: var(--black_color_90);
-              }
-          }
-          &:hover,
-          &.slick-active {
-              button {
-                  &::before {
-                      color: var(--primary_color);
-                  }
-              }
-          }
-      }
+    zoom: 1.2;
+    &.loginform {
+        margin-top: 70px;
+    }
+    ::ng-deep {
+        .mat-form-field-suffix {
+            zoom: 0.9;
+        }
+        .mat-form-field-flex {
+            border: 1px solid var(--gray_color_80);
+            background-color: var(--backgroud_color);
+            padding-top: calc(0.50em - 1.5px) !important;
+            padding: 0.1em 0.75em !important;
+            &:focus-within {
+                border: 1px solid var(--primary_color);
+            }
+        }
+        .mat-form-field-infix {
+            padding: 0.25em 0 0.75em 0 !important;
+            padding-bottom: calc(0.5em - 0.5px) !important;
+            border-top: 0.84375em solid transparent !important;
+            border-bottom: unset !important;
+        }
+        .mat-form-field {
+            //line-height: 1.125 !important;
+            .mat-input-element {
+                vertical-align: text-top !important;
+                font-size: 12px;
+                font-weight: 700;
+                margin-top: -0.25em;
+            }
+            .inputIcons {
+                color: var(--black_color_70);
+            }
+        }
+    }
   }
 }
 @keyframes spinner {
@@ -155,10 +144,6 @@
     margin: 0 5px;
     background-color: white; /* Background color for the spinner or any other text elements */
     color: #ffffff; 
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 5px;
-      background-color: white;
   }
 }
 @media only screen and (min-width:768px) and (max-width:991px) {
@@ -201,43 +186,5 @@
   .loginPanel {
       padding: 0px 40px !important;
       flex: 0 !important;
-  }
-}
-.mat-form {
-  zoom: 1.2;
-  &.loginform {
-      margin-top: 70px;
-  }
-  ::ng-deep {
-      .mat-form-field-suffix {
-          zoom: 0.9;
-      }
-      .mat-form-field-flex {
-          border: 1px solid var(--gray_color_80);
-          background-color: var(--backgroud_color);
-          padding-top: calc(0.50em - 1.5px) !important;
-          padding: 0.1em 0.75em !important;
-          &:focus-within {
-              border: 1px solid var(--primary_color);
-          }
-      }
-      .mat-form-field-infix {
-          padding: 0.25em 0 0.75em 0 !important;
-          padding-bottom: calc(0.5em - 0.5px) !important;
-          border-top: 0.84375em solid transparent !important;
-          border-bottom: unset !important;
-      }
-      .mat-form-field {
-          //line-height: 1.125 !important;
-          .mat-input-element {
-              vertical-align: text-top !important;
-              font-size: 12px;
-              font-weight: 700;
-              margin-top: -0.25em;
-          }
-          .inputIcons {
-              color: var(--black_color_70);
-          }
-      }
   }
 }
