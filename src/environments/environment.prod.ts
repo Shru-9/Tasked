@@ -1,3 +1,6 @@
+
+// src/environments/environment.prod.ts
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://shru-9.github.io/tasked/'  // Production URL
 };

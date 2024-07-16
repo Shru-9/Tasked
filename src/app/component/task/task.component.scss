@@ -1,0 +1,227 @@
+.doughnutChart {
+  background-color: var(--backgroud_color);
+  // height: 120px;
+}
+::ng-deep {
+  .taskGroup {
+    // height: 40%;
+    .mat-expansion-panel-body {
+      padding: 20px 26px;
+      // height: 150px;
+    }
+  }
+}
+
+.chartHeight1 {
+  height: 13em;
+}
+.chart-container {
+  padding: 20px;
+  // margin: 15px;
+  width: 100%;
+  // height: 120px;
+  height: 100%;
+  // margin-top: 20px;
+  // padding-left: 10px;
+
+}
+.space{  
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 1;
+  flex: 1 1 auto;
+  margin-bottom: 20px;
+}
+/* Adjust padding and margin for smaller screens */
+@media (max-width: 600px) {
+  .chart-container {
+    padding: 10px;
+    margin: 5px;
+  }
+}
+.searchInputBox {
+  margin: 0px 10px;
+
+  ::ng-deep {
+    .mat-form-field-flex {
+      align-items: center !important;
+      padding: 0.34em 0.5em !important;
+      background-color: var(--white_color);
+
+      ::placeholder {
+        color: #b4b4b4;
+        font-weight: normal;
+      }
+    }
+
+    .mat-form-field-infix {
+      display: contents !important;
+
+      input {
+        padding-left: 5px;
+      }
+    }
+
+    .searchbutton {
+      .mat-button-wrapper {
+        display: flex !important;
+      }
+    }
+
+    .mat-icon {
+      color: var(--gray_color);
+    }
+
+    .material-icons {
+      font-size: 22px !important;
+    }
+  }
+}
+
+.dataTable {
+  max-height: 60vh; /* Set the maximum height */
+  min-height: 150px; /* Optional: Set a minimum height */
+  overflow-y: auto; /* Enables scrolling if the content is too tall */
+  border-radius: 10px;
+  border: 1px solid #131212;
+  table {
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+    border-spacing: 0;
+    border-collapse: separate;
+
+    thead {
+      color: var(--black_color_80);
+
+      th {
+        padding: 15px 20px;
+        font-weight: normal;
+        background-color: var(--backgroud_color);
+        color: var(--black_color_80);
+        font-weight: bold;
+        white-space: nowrap;
+        font-size: var(--small-font);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 200px;
+        width: 200px;
+
+        &:nth-child(1) {
+          text-align: center;
+        }
+      }
+
+      tr {
+        position: sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          border-top: var(--border);
+          padding: 10px 20px;
+          // border-right: var(--border);
+          font-size: var(--medium-font);
+          // color: var(--black_color);
+          color: var(--black_color_80);
+          // display: inherit !important;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 200px;
+          width: 200px;
+
+          &>span {
+            // display: contents;
+            margin-right: 5px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &.success,
+            &.error {
+              font-weight: bold;
+            }
+
+            &.success {
+              color: var(--success);
+            }
+
+            &.error {
+              color: var(--error);
+            }
+
+            a {
+              color: var(--primary_color);
+            }
+          }
+
+          &>.mat-icon {
+            margin: 0 3px;
+            display: inline !important;
+            vertical-align: middle !important;
+            color: var(--gray_color_50);
+
+            &.blue {
+              color: var(--primary_color);
+            }
+          }
+
+
+          &.action {
+            color: var(--gray_color);
+
+            &>* {
+              cursor: pointer;
+              margin: 0 5px;
+
+              &.edit {
+                color: var(--gray_color);
+              }
+
+              &.delete {
+                color: var(--gray_color);
+              }
+            }
+          }
+
+          &:nth-child(1) {
+            text-align: center;
+          }
+        }
+
+        &:hover {
+          box-shadow: var(--box_shadow);
+          background-color: var(--gray_color_80);
+        }
+      }
+    }
+  }
+}
+.completed {
+  color: green;
+}
+
+.pending {
+  color: red;
+}
+.action-bar {
+  .action-area {
+    .item-perpage {
+      margin-right: 5px !important;
+
+      select {
+        margin: 0px 0px 0px 0px !important;
+      }
+    }
+
+    .search-bar {
+      margin: 0px 0px !important;
+    }
+  }
+}

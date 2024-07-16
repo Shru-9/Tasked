@@ -1,0 +1,207 @@
+<mat-toolbar color="primary">
+  <span>Tasked</span>
+  <span class="space"></span>
+  
+  <button  mat-stroked-button color="warn">Logout</button>
+
+</mat-toolbar>
+<div class="chart-container">
+  <div class="wrapper ">
+    <div class="row">
+      <div class="col-12 ">
+        <!-- <mat-icon class="cursorPointer gray pt-2" (click)="back()">keyboard_backspace</mat-icon> -->
+        <mat-accordion class="taskGroup width90 pl-2 ">
+          <mat-expansion-panel #panel0="matExpansionPanel" [expanded]="true" class="5 mb-3" hideToggle>
+            <mat-expansion-panel-header *ngIf="!panel0.expanded" (click)="$event.preventDefault()">
+              <div class="row justify-content-between width100 " (click)="$event.preventDefault()">
+                <div class="col-4 d-flex align-items-center header">
+                  <!-- {{taskGroupInfo?.Name | titlecase}} -->
+                  <!-- </mat-panel-title> -->
+                </div>
+              </div>
+            </mat-expansion-panel-header>
+            <div class="row">
+
+              <div class="col-3 doughnutChart p-3 d-grid align-items-center">
+                <div echarts [options]="option1" class="chartHeight1"></div>
+              </div>
+              <div class="col-9 pl-4">
+                <div class="row d-flex justify-content-between mt-3">
+                  <div class="col-4 d-flex align-items-center">
+                    <div class="header">{{taskGroupInfo?.Name | titlecase}}</div>
+                  </div>
+                  <!-- <div class="col-5 d-flex justify-content-between pr-3">
+                      <div class="refresh mt-2">
+                        <ui-switch matTooltip="Status" [(ngModel)]="status" (change)="changeStatus()" size="small"
+                          defaultBgColor="#EAEAEA" checkedLabel="On" uncheckedLabel="Off" checkedTextColor="white"
+                          uncheckedTextColor="red"></ui-switch>
+                      </div>
+                      <div class="dashboardFilterButton" [matTooltip]="labelName?.copy ? labelName?.copy : 'Copy'"
+                        (click)="viewData('copyTaskGroupAPI')">
+                        <i class="icon-copy"></i>
+                      </div>
+                      <div class="dashboardFilterButton"
+                        [matTooltip]="labelName?.configureAPI ? labelName?.configureAPI : 'Configure API'"
+                        (click)="configureApi()">
+                        <i class="icon-channel_configuration"></i>
+                      </div>
+                      <div class="dashboardFilterButton" [matTooltip]="labelName?.edit ? labelName?.edit : 'Edit'"
+                        (click)="editTaskGroup()">
+                        <i class="icon-edit"></i>
+                      </div>
+                      <div class="dashboardFilterButton" (click)="panel0.close()">
+                        <i class="icon-arrowUp"></i>
+                      </div>
+                    </div> -->
+                </div>
+                <div class="row mt-3 rechurnRuleTableHead">
+                  <div class="col-5">
+                    <!-- <span>{{labelName?.userGroup ? labelName?.userGroup : 'User Group'}}</span> -->
+                  </div>
+                  <div class="col-7">
+                    <div class="row">
+                      <div class="col-5">
+                        <!-- {{labelName?.startTime ? labelName?.startTime : 'Start Time'}} -->
+                      </div>
+                      <div class="col-5">
+                        <!-- {{labelName?.endTime ? labelName?.endTime : 'End Time'}} -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <!-- <ng-container *ngFor="let item of taskGroupInfo.UserGroup; let last = last">
+                        <ng-container *ngFor="let item1 of getGroupList">
+                          <span *ngIf="item == item1.GroupID">{{item1.GroupName}} <ng-container
+                              *ngIf="item == item1.GroupID && !last">,&nbsp;</ng-container></span>
+                        </ng-container>
+                      </ng-container> -->
+                  </div>
+                  <div class="col-7">
+                    <div class="row">
+                      <div class="col-5">
+                        <!-- {{taskGroupInfo?.StartDate ? (taskGroupInfo?.StartDate | dateFormat) :
+                          taskGroupInfo?.StartDate}} {{taskGroupInfo.StartTime}} -->
+                      </div>
+                      <div class="col-5">
+                        <!-- {{taskGroupInfo?.ExpiryDate ? (taskGroupInfo?.ExpiryDate | dateFormat) :
+                          taskGroupInfo?.ExpiryDate}} {{taskGroupInfo.ExpiryTime}} -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rechurnRuleTableHead mt-1">
+                  <div class="col-12">
+                    <!-- {{labelName?.description ? labelName?.description : 'Description'}} -->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <!-- {{taskGroupInfo.Description}} -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper ">
+    <div class="row" >
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div *ngIf="!loader">
+          <ng-container>
+            <div class="action-bar ">
+              <div class="action-area d-flex justify-content-end">
+                <div class="item-perpage" *ngIf=" (tabValue.length>10  )">
+                  <label>Show</label>
+                  <select (change)="setItemsPerPage($event.target.value)" class="select1">
+                    <option>10</option>
+                    <option *ngIf="tabValue.length>25">25 </option>
+                    <option *ngIf="tabValue.length>50">50 </option>
+                    <option *ngIf="tabValue.length>100 ">100 </option>
+                  </select>
+                  <label>entries</label>
+                </div>
+                <div class="searchInputBox" *ngIf="(tabKey?.length > 0 && tabValue.length > 0) ">
+                  <div>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                      <input matInput type="text" [(ngModel)]="searchValue" (keyup)="setSearch($event.target.value)"
+                        placeholder="Search">
+                      <span class="d-flex">
+                        <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="setSearch('');clearSearch();"
+                          class="searchbutton" *ngIf="crossIcon">close</mat-icon>
+                        <mat-icon class="cursorPointer">search</mat-icon>
+                      </span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-stroked-button color="primary" class="btn outline" (click)="openAlertDialog('')">
+                  Add</button>
+              </div>
+            </div>
+          </ng-container>
+          <div class="px-0 py-0">
+            <div class="table-container dataTable" *ngIf="tabValue && tabValue?.length != 0">
+              <table>
+                <thead>
+                  <tr *ngIf="tabValue.length > 0">
+                    <ng-container *ngFor="let data of finalField; let i = index">
+                      <th [ngClass]="!data.checked ? 'tabCol' : ''" class="{{'column'+i}}">
+                        <ng-container>{{data.value == 'id' ? 'Id' : data.value}}
+                        </ng-container>
+                      </th>
+                    </ng-container>
+                  </tr>
+                </thead>
+                <tbody *ngIf="tabValue.length>0">
+                  <tr
+                    *ngFor="let data of tabValue | filter : search | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let j = index">
+                    <ng-container *ngFor="let val of finalField; let i = index">
+                      <!-- <td *ngIf="val.value == 'id'" [ngClass]="!val.checked ? 'tabCol' : ''"
+                              class="{{'column'+i}}">
+                              <button class="btn" mat-flat-button color="primary" type="button"
+                                (click)="editTask(data)">View</button>
+                            </td> -->
+
+                      <td *ngIf="val.value == 'id'" class="column{{i}}" [ngClass]="!val.checked ? 'tabCol' : ''">
+                        <mat-icon class="cursorPointer" [matMenuTriggerFor]="menu">more_horiz</mat-icon>
+                        <mat-menu #menu="matMenu" class="master_action cursorPointer">
+                          <button mat-menu-item (click)="openAlertDialog(data)" class="cursorPointer cursorPointer">
+                            <mat-icon class="edit">edit</mat-icon>
+                            <span>Edit</span>
+                          </button>
+                          <button mat-menu-item (click)="deleteTask(data[finalField[i].value])" class="cursorPointer">
+                            <!-- <mat-icon class="delete">delete</mat-icon> -->
+                            <mat-icon class="red-color cursorPointer">delete_outline</mat-icon>
+                            <span>Delete</span>
+                          </button>
+                        </mat-menu>
+                      </td>
+                      <td *ngIf="val.value !== 'id'" [ngClass]="{ 'tabCol': !val.checked,
+                              'completed': val.value === 'Status' && (data[val.value] === true || data[val.value] === 'true'),
+                              'pending': val.value === 'Status' && (data[val.value] === false || data[val.value] === 'false' || data[val.value] == null || data[val.value] == '')
+                            }" class="{{'column'+i}}">
+                        <span *ngIf="val.value === 'Status'">
+                          {{data[val.value] === true ? 'Completed' : 'Pending'}}
+                        </span>
+                        <span *ngIf="val.value !== 'Status'"
+                          [matTooltip]="data[val.value] && data[val.value].length > 20 ? data[val.value] : ''">
+                          {{data[val.value] == '' ? '-' : data[val.value] == ' ' ? '-' : data[val.value]}}
+                        </span>
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pagination" *ngIf="tabValue.length>10">
+            <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

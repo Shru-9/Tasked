@@ -1,0 +1,10 @@
+.mat-expansion-panel {
+    background-color: var(--backgroud_color);
+}
+
+.mat-expansion-panel.mat-expanded.mat-expansion-panel-spacing {
+    background-color: var(--white_color);
+}
+.mat-expansion-panel-header-title{
+    color: var(--black_color_80);
+}

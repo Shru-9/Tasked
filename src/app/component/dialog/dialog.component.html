@@ -1,0 +1,174 @@
+<div class="icon-rejected d-flex justify-content-end" (click)="closeDialog(true)">
+<mat-icon  >close</mat-icon></div>
+
+<!-- <mat-icon class="icon-rejected close-btn"  (click)="closeDialog(true)"></mat-icon> -->
+<ng-container *ngIf="data.type == 'addUsers'">
+  <!-- <app-loader *ngIf="loader"></app-loader> -->
+  <div class="inner-container">
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-lg-7 col-md-7 col-10 pl-0">
+          <legend>Users</legend>
+          <form [formGroup]="form">
+            <div class="formGroup mt-3">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>LinkName</mat-label>
+                    <input matInput formControlName="LinkName">
+                    <!-- <mat-error *ngIf="f.LinkName.errors"> -->
+                    <!-- <ng-container *ngIf="f.LinkName.errors.pattern">{{labelName?.LinkName}} is invalid.
+                        </ng-container>
+                        <ng-container *ngIf="f.LinkName.errors.required">{{labelName?.LinkName}} is required.</ng-container>
+                        <ng-container *ngIf="f.LinkName?.errors?.checknull">Whitespace not allowed.
+                        </ng-container>
+                        <ng-container *ngIf="f.LinkName?.errors?.checknull1">Must be at least 3 characters long.
+                        </ng-container> -->
+                    <!-- </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Description</mat-label>
+                      <input matInput formControlName="Desc" maxlength="500">
+                      <mat-error *ngIf="f.Desc.errors">
+                        <ng-container *ngIf="f.Desc?.errors?.checknull">Whitespace not allowed.
+                        </ng-container>
+                        <ng-container *ngIf="f.Desc?.errors?.pattern">
+                          {{labelName?.Description}} is Invalid.
+                        </ng-container>
+                        <ng-container *ngIf="f.Desc?.errors?.checknull1">
+                          Must be at least 3 characters long.
+                        </ng-container>
+                      </mat-error>
+                      <mat-hint class="mat-error" *ngIf="f?.Desc?.value?.length == 500">
+                        Cannot be beyond 500 characters.
+                      </mat-hint>
+                    </mat-form-field>
+                  </div> -->
+              </div>
+            </div>
+            <div class="btn-group d-none d-md-block">
+              <button id="reset" #reset class="btn btn-gray" mat-flat-button type="Reset">Reset</button>
+              <button class="btn" mat-flat-button color="primary" (click)="submit('add')" type="button">
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="data.type == 'AddEditTask'">
+  <!-- <app-loader *ngIf="loader"></app-loader> -->
+  <div class="">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 col-10 pl-0">
+          <legend  class="legend">{{this.editingTaskId == null ? 'Add' : 'Update'}} Task</legend>
+          <form [formGroup]="form">
+            <div class="formGroup ">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Assignee</mat-label>
+                    <input matInput formControlName="Assignee" appTitleCase>
+                    <mat-error *ngIf="f.Assignee.errors">
+                      <ng-container *ngIf="f.Assignee.errors.pattern">Assignee is invalid.
+                      </ng-container>
+                      <ng-container *ngIf="f.Assignee.errors.required">Assignee is required.</ng-container>
+                      <ng-container *ngIf="f.Assignee?.errors?.checknull">Whitespace not allowed.
+                      </ng-container>
+                      <ng-container *ngIf="f.Assignee?.errors?.checknull1">Must be at least 3 characters long.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Request</mat-label>
+                    <input matInput formControlName="Request" appTitleCase>
+                    <mat-error *ngIf="f.Request.errors">
+                      <ng-container *ngIf="f.Request.errors.pattern">Request is invalid.
+                      </ng-container>
+                      <ng-container *ngIf="f.Request.errors.required">Request is required.</ng-container>
+                      <ng-container *ngIf="f.Request?.errors?.checknull">Whitespace not allowed.
+                      </ng-container>
+                      <ng-container *ngIf="f.Request?.errors?.checknull1">Must be at least 3 characters long.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Priority</mat-label>
+                    <input (keypress)="numericOnly($event)" min="0" matInput formControlName="Priority" type="number"
+                      (paste)="numericOnly($event)" autocomplete="off">
+                    <mat-error *ngIf="f.Priority.errors">
+                      <ng-container *ngIf="f.Priority.errors.required">Priority is required.</ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
+                  <div class="checkbox d-flex align-items" *ngIf="!editingTaskId">
+                    <span class="inactive">Pending</span>
+                    &nbsp;&nbsp;<mat-slide-toggle color="primary"[disabled]="!editingTaskId"
+                      formControlName="Status"></mat-slide-toggle>&nbsp;&nbsp;
+                    <span class="active">Resolved</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Subject</mat-label>
+                    <input matInput formControlName="Subject">
+                    <mat-error *ngIf="f.Subject.errors">
+                      <ng-container *ngIf="f.Subject.errors.pattern">Subject is invalid.
+                      </ng-container>
+                      <ng-container *ngIf="f.Subject.errors.required">Subject is required.</ng-container>
+                      <ng-container *ngIf="f.Subject?.errors?.checknull">Whitespace not allowed.
+                      </ng-container>
+                      <ng-container *ngIf="f.Assignee?.errors?.checknull1">Must be at least 3 characters long.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="3" matInput formControlName="Description" [maxLength]="MAXCHARACTER"
+                      placeholder="(1,024 characters)"></textarea>
+                    <mat-error *ngIf="f.Description.errors">
+                      <ng-container *ngIf="f.Description.errors.pattern">Description is invalid.
+                      </ng-container>
+                      <ng-container *ngIf="f.Description.errors.required">Description is required.</ng-container>
+                      <ng-container *ngIf="f.Description?.errors?.checknull">Whitespace not allowed.
+                      </ng-container>
+                      <ng-container *ngIf="f.Description?.errors?.checknull1">Must be at least 3 characters long.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="btn-group  d-md-block d-flex">
+              <button id="reset" #reset class="btn btn-gray" mat-flat-button type="Reset">Reset</button>&nbsp;&nbsp;
+              <!-- &nbsp;&nbsp;<button class="btn" mat-flat-button color="primary" (click)="submit('add')" type="button">Save
+              </button> -->
+              &nbsp;&nbsp;<button class="btn" mat-flat-button color="primary" (click)="saveTask()" type="button">{{this.editingTaskId == null ? 'Save' : 'Update'}}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+
+</ng-container>

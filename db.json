@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Shruti",
+      "lastName": "Singh",
+      "email": "Shrutis@gmail.com",
+      "phoneNo.": "7233046245",
+      "employeeId": "101"
+    },
+    {
+      "id": 2,
+      "firstName": "Prakriti",
+      "lastName": "Pathak",
+      "email": "jane.smith@example.com",
+      "phoneNo.": "7233046245",
+      "employeeId": "102"
+    }
+  ],
+  "tasks": [
+    {
+      "Assignee": "Shruti",
+      "Description": "Description",
+      "Request": "Fix the code",
+      "Priority": 3,
+      "Subject": "COdee",
+      "Status": true,
+      "UserId": "1",
+      "id": "e5b5"
+    },
+    {
+      "id": "4afa",
+      "Assignee": "hello",
+      "Description": "hello",
+      "Request": "hellohello",
+      "Priority": 4,
+      "Subject": "hellohello",
+      "Status": false,
+      "UserId": "1"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+.mat-slide-toggle-thumb {
+    box-shadow: none !important;
+}
+
+.mat-slide-toggle.toggleBtn .mat-slide-toggle-bar {
+    border: 2px solid var(--gray_color) !important;
+}
+
+.mat-slide-toggle.toggleBtn .mat-slide-toggle-bar .mat-slide-toggle-thumb-container,
+.mat-slide-toggle.toggleBtn .mat-slide-toggle-bar .mat-slide-toggle-thumb {
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.mat-slide-toggle .mat-slide-toggle-ripple {
+    display: none !important;
+}
+
+
+.mat-button-toggle-checked {
+    background-color: var(--backgroud_color) !important;
+
+    .mat-button-toggle-button {
+        .mat-button-toggle-label-content {
+            span i {
+                color: var(--primary_color) !important
+            }
+        }
+    }
+}
+
+.mat-slide-toggle-content{
+    font-family: var(--nunito-font) !important;
+}
