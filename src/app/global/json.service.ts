@@ -14,7 +14,7 @@ export class JsonService {
   getallUsers(){
     return this.http.get(this.apiUrlUsers);
   }
-
+  
 
   getTasksByUserId(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrlTask}?UserId=${userId}`);

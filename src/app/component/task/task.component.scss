@@ -1,7 +1,7 @@
-.doughnutChart {
-  background-color: var(--backgroud_color);
-  // height: 120px;
-}
+// .doughnutChart {
+//   background-color: var(--backgroud_color);
+//   // height: 120px;
+// }
 ::ng-deep {
   .taskGroup {
     // height: 40%;
@@ -142,37 +142,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-
-            &.success,
-            &.error {
-              font-weight: bold;
-            }
-
-            &.success {
-              color: var(--success);
-            }
-
-            &.error {
-              color: var(--error);
-            }
-
-            a {
-              color: var(--primary_color);
-            }
           }
-
-          &>.mat-icon {
-            margin: 0 3px;
-            display: inline !important;
-            vertical-align: middle !important;
-            color: var(--gray_color_50);
-
-            &.blue {
-              color: var(--primary_color);
-            }
-          }
-
-
           &.action {
             color: var(--gray_color);
 

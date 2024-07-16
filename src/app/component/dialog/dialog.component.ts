@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { JsonService } from 'src/app/global/json.service';
+import { CommonService } from 'src/app/global/common.service';
 export function checknull(controlName) {
   return (formGroup: FormGroup) => {
     const checkspace = formGroup.controls[controlName];
@@ -23,28 +24,6 @@ export function checknull(controlName) {
     }
     return null;
   };
-}
-export function checknull1(controlName) {
-  return (formGroup: FormGroup) => {
-    const checkspace1 = formGroup.controls[controlName];
-    if (checkspace1 !== undefined) {
-      if (checkspace1.errors) {
-        return;
-      }
-      if (checkspace1.value && checkspace1.value.length > 0) {
-        // return null;
-        if (checkspace1.value.trim("").length < 3) {
-          checkspace1.setErrors({ checknull1: true });
-        } else {
-          checkspace1.setErrors(null);
-        }
-        if (checkspace1.value.length < 0) {
-          return null;
-        }
-      }
-    }
-  };
-  return null;
 }
 @Component({
   selector: 'app-dialog',
@@ -70,7 +49,7 @@ export class DialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private service :JsonService,
     private formBuilder: FormBuilder,
-    private el: ElementRef) { }
+    private common: CommonService) { }
 
   ngOnInit(): void {
 
@@ -86,7 +65,7 @@ export class DialogComponent implements OnInit {
         UserId:["1", [Validators.nullValidator]]
       }, {
         validator: [checknull("Assignee"),
-        checknull1("Assignee"), checknull("Request"), checknull1("Description")]
+        checknull("Subject"), checknull("Request"), checknull("Description")]
     }
     );
     if (this.data.data) {
@@ -115,9 +94,6 @@ export class DialogComponent implements OnInit {
     }
     return true;
   }
-  submit(event) {
-
-  }
   closeDialog(status: any): void {
     this.dialogRef.close(status);
   }
@@ -128,10 +104,12 @@ export class DialogComponent implements OnInit {
       if (this.editingTaskId !== null) {
         this.service.updateTask(this.editingTaskId, taskData).subscribe(() => {
           this.editingTaskId = null;
+          this.common.snackbar1("Data Updated Sucessfully","success")
           this.closeDialog(true);
         });
       } else {
         this.service.createTask(taskData).subscribe(() => {
+          this.common.snackbar1("Data Added Sucessfully","success")
           this.closeDialog(true);
         });
       }

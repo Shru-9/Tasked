@@ -2,7 +2,7 @@
   <span>Tasked</span>
   <span class="space"></span>
   
-  <button  mat-stroked-button color="warn">Logout</button>
+  <button  mat-stroked-button color="warn" (click)="logout()">Logout</button>
 
 </mat-toolbar>
 <div class="chart-container">
@@ -13,45 +13,18 @@
         <mat-accordion class="taskGroup width90 pl-2 ">
           <mat-expansion-panel #panel0="matExpansionPanel" [expanded]="true" class="5 mb-3" hideToggle>
             <mat-expansion-panel-header *ngIf="!panel0.expanded" (click)="$event.preventDefault()">
-              <div class="row justify-content-between width100 " (click)="$event.preventDefault()">
-                <div class="col-4 d-flex align-items-center header">
-                  <!-- {{taskGroupInfo?.Name | titlecase}} -->
-                  <!-- </mat-panel-title> -->
-                </div>
-              </div>
             </mat-expansion-panel-header>
             <div class="row">
-
-              <div class="col-3 doughnutChart p-3 d-grid align-items-center">
+              <div class="col-3 doughnutChart d-grid align-items-center">
                 <div echarts [options]="option1" class="chartHeight1"></div>
               </div>
               <div class="col-9 pl-4">
                 <div class="row d-flex justify-content-between mt-3">
                   <div class="col-4 d-flex align-items-center">
-                    <div class="header">{{taskGroupInfo?.Name | titlecase}}</div>
+                    <div class="header">{{userDetails?.firstName | titlecase}}</div>
                   </div>
                   <!-- <div class="col-5 d-flex justify-content-between pr-3">
-                      <div class="refresh mt-2">
-                        <ui-switch matTooltip="Status" [(ngModel)]="status" (change)="changeStatus()" size="small"
-                          defaultBgColor="#EAEAEA" checkedLabel="On" uncheckedLabel="Off" checkedTextColor="white"
-                          uncheckedTextColor="red"></ui-switch>
-                      </div>
-                      <div class="dashboardFilterButton" [matTooltip]="labelName?.copy ? labelName?.copy : 'Copy'"
-                        (click)="viewData('copyTaskGroupAPI')">
-                        <i class="icon-copy"></i>
-                      </div>
-                      <div class="dashboardFilterButton"
-                        [matTooltip]="labelName?.configureAPI ? labelName?.configureAPI : 'Configure API'"
-                        (click)="configureApi()">
-                        <i class="icon-channel_configuration"></i>
-                      </div>
-                      <div class="dashboardFilterButton" [matTooltip]="labelName?.edit ? labelName?.edit : 'Edit'"
-                        (click)="editTaskGroup()">
-                        <i class="icon-edit"></i>
-                      </div>
-                      <div class="dashboardFilterButton" (click)="panel0.close()">
-                        <i class="icon-arrowUp"></i>
-                      </div>
+                      
                     </div> -->
                 </div>
                 <div class="row mt-3 rechurnRuleTableHead">
@@ -71,7 +44,7 @@
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <!-- <ng-container *ngFor="let item of taskGroupInfo.UserGroup; let last = last">
+                    <!-- <ng-container *ngFor="let item of userDetails.UserGroup; let last = last">
                         <ng-container *ngFor="let item1 of getGroupList">
                           <span *ngIf="item == item1.GroupID">{{item1.GroupName}} <ng-container
                               *ngIf="item == item1.GroupID && !last">,&nbsp;</ng-container></span>
@@ -81,12 +54,12 @@
                   <div class="col-7">
                     <div class="row">
                       <div class="col-5">
-                        <!-- {{taskGroupInfo?.StartDate ? (taskGroupInfo?.StartDate | dateFormat) :
-                          taskGroupInfo?.StartDate}} {{taskGroupInfo.StartTime}} -->
+                        <!-- {{userDetails?.StartDate ? (userDetails?.StartDate | dateFormat) :
+                          userDetails?.StartDate}} {{userDetails.StartTime}} -->
                       </div>
                       <div class="col-5">
-                        <!-- {{taskGroupInfo?.ExpiryDate ? (taskGroupInfo?.ExpiryDate | dateFormat) :
-                          taskGroupInfo?.ExpiryDate}} {{taskGroupInfo.ExpiryTime}} -->
+                        <!-- {{userDetails?.ExpiryDate ? (userDetails?.ExpiryDate | dateFormat) :
+                          userDetails?.ExpiryDate}} {{userDetails.ExpiryTime}} -->
                       </div>
                     </div>
                   </div>
@@ -98,7 +71,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <!-- {{taskGroupInfo.Description}} -->
+                    <!-- {{userDetails.Description}} -->
                   </div>
                 </div>
               </div>
@@ -160,12 +133,6 @@
                   <tr
                     *ngFor="let data of tabValue | filter : search | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let j = index">
                     <ng-container *ngFor="let val of finalField; let i = index">
-                      <!-- <td *ngIf="val.value == 'id'" [ngClass]="!val.checked ? 'tabCol' : ''"
-                              class="{{'column'+i}}">
-                              <button class="btn" mat-flat-button color="primary" type="button"
-                                (click)="editTask(data)">View</button>
-                            </td> -->
-
                       <td *ngIf="val.value == 'id'" class="column{{i}}" [ngClass]="!val.checked ? 'tabCol' : ''">
                         <mat-icon class="cursorPointer" [matMenuTriggerFor]="menu">more_horiz</mat-icon>
                         <mat-menu #menu="matMenu" class="master_action cursorPointer">
@@ -174,7 +141,6 @@
                             <span>Edit</span>
                           </button>
                           <button mat-menu-item (click)="deleteTask(data[finalField[i].value])" class="cursorPointer">
-                            <!-- <mat-icon class="delete">delete</mat-icon> -->
                             <mat-icon class="red-color cursorPointer">delete_outline</mat-icon>
                             <span>Delete</span>
                           </button>
@@ -197,6 +163,11 @@
                 </tbody>
               </table>
             </div>
+            <div *ngIf="tabValue && tabValue?.length == 0">
+              <img  src="/assets/images/norecordfound.png" />
+              <!-- <app-norecordfound [showNoRecordImage]="true" [isDialog]="isDialog"></app-norecordfound> -->
+            </div>
+
           </div>
           <div class="pagination" *ngIf="tabValue.length>10">
             <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>

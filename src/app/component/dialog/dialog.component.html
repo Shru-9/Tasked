@@ -1,68 +1,7 @@
 <div class="icon-rejected d-flex justify-content-end" (click)="closeDialog(true)">
 <mat-icon  >close</mat-icon></div>
 
-<!-- <mat-icon class="icon-rejected close-btn"  (click)="closeDialog(true)"></mat-icon> -->
-<ng-container *ngIf="data.type == 'addUsers'">
-  <!-- <app-loader *ngIf="loader"></app-loader> -->
-  <div class="inner-container">
-    <div class="wrapper">
-      <div class="row">
-        <div class="col-lg-7 col-md-7 col-10 pl-0">
-          <legend>Users</legend>
-          <form [formGroup]="form">
-            <div class="formGroup mt-3">
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <mat-form-field appearance="fill">
-                    <mat-label>LinkName</mat-label>
-                    <input matInput formControlName="LinkName">
-                    <!-- <mat-error *ngIf="f.LinkName.errors"> -->
-                    <!-- <ng-container *ngIf="f.LinkName.errors.pattern">{{labelName?.LinkName}} is invalid.
-                        </ng-container>
-                        <ng-container *ngIf="f.LinkName.errors.required">{{labelName?.LinkName}} is required.</ng-container>
-                        <ng-container *ngIf="f.LinkName?.errors?.checknull">Whitespace not allowed.
-                        </ng-container>
-                        <ng-container *ngIf="f.LinkName?.errors?.checknull1">Must be at least 3 characters long.
-                        </ng-container> -->
-                    <!-- </mat-error> -->
-                  </mat-form-field>
-                </div>
-                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Description</mat-label>
-                      <input matInput formControlName="Desc" maxlength="500">
-                      <mat-error *ngIf="f.Desc.errors">
-                        <ng-container *ngIf="f.Desc?.errors?.checknull">Whitespace not allowed.
-                        </ng-container>
-                        <ng-container *ngIf="f.Desc?.errors?.pattern">
-                          {{labelName?.Description}} is Invalid.
-                        </ng-container>
-                        <ng-container *ngIf="f.Desc?.errors?.checknull1">
-                          Must be at least 3 characters long.
-                        </ng-container>
-                      </mat-error>
-                      <mat-hint class="mat-error" *ngIf="f?.Desc?.value?.length == 500">
-                        Cannot be beyond 500 characters.
-                      </mat-hint>
-                    </mat-form-field>
-                  </div> -->
-              </div>
-            </div>
-            <div class="btn-group d-none d-md-block">
-              <button id="reset" #reset class="btn btn-gray" mat-flat-button type="Reset">Reset</button>
-              <button class="btn" mat-flat-button color="primary" (click)="submit('add')" type="button">
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</ng-container>
-
 <ng-container *ngIf="data.type == 'AddEditTask'">
-  <!-- <app-loader *ngIf="loader"></app-loader> -->
   <div class="">
       <div class="row">
         <div class="col-lg-10 col-md-10 col-10 pl-0">
@@ -80,8 +19,6 @@
                       <ng-container *ngIf="f.Assignee.errors.required">Assignee is required.</ng-container>
                       <ng-container *ngIf="f.Assignee?.errors?.checknull">Whitespace not allowed.
                       </ng-container>
-                      <ng-container *ngIf="f.Assignee?.errors?.checknull1">Must be at least 3 characters long.
-                      </ng-container>
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -96,8 +33,6 @@
                       </ng-container>
                       <ng-container *ngIf="f.Request.errors.required">Request is required.</ng-container>
                       <ng-container *ngIf="f.Request?.errors?.checknull">Whitespace not allowed.
-                      </ng-container>
-                      <ng-container *ngIf="f.Request?.errors?.checknull1">Must be at least 3 characters long.
                       </ng-container>
                     </mat-error>
                   </mat-form-field>
@@ -134,8 +69,6 @@
                       <ng-container *ngIf="f.Subject.errors.required">Subject is required.</ng-container>
                       <ng-container *ngIf="f.Subject?.errors?.checknull">Whitespace not allowed.
                       </ng-container>
-                      <ng-container *ngIf="f.Assignee?.errors?.checknull1">Must be at least 3 characters long.
-                      </ng-container>
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -151,8 +84,6 @@
                       </ng-container>
                       <ng-container *ngIf="f.Description.errors.required">Description is required.</ng-container>
                       <ng-container *ngIf="f.Description?.errors?.checknull">Whitespace not allowed.
-                      </ng-container>
-                      <ng-container *ngIf="f.Description?.errors?.checknull1">Must be at least 3 characters long.
                       </ng-container>
                     </mat-error>
                   </mat-form-field>

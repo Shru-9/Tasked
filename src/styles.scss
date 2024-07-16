@@ -4,7 +4,6 @@
 @include mat.core();
 @import url(assets/scss/grid.scss);
 @import url(assets/scss/mat-accordian.scss); //ld
-@import url(assets/scss/mat-dropdown.scss); //ld
 @import url(assets/scss/mat-inputfiled.scss); //ld
 @import url(assets/scss/mat-toggle-btn.scss); //ld
 @import '~@angular/material/prebuilt-themes/indigo-pink.css'; // or any other Angular Material theme
@@ -53,6 +52,8 @@
   --xxl-font: 30px;
   --xxxl-font: 35px;
   --maroonColor: #db4453;
+  --goldYellowColor: #fbad17;
+  --greenColor: #36bc9b;
 }
 
 ::-webkit-scrollbar {
@@ -143,11 +144,6 @@ body {
 }
 
 
-.icon-rejected {
-  font-size: var(--content_title) !important;
-  color: var(--gray_color);
-  cursor: pointer;
-}
 
 .bg-white {
   background-color: var(--white_color);
@@ -166,20 +162,6 @@ body {
   // height: 35px;
 }
 
-.mat-form {
-  max-width: 1404px;
-  margin: auto;
-  font-size: 15.9px;
-
-  .mat-form-field-wrapper {
-    padding-bottom: 1.75em;
-  }
-
-  &.mat-td .mat-form-field-wrapper {
-    padding-bottom: 0 !important;
-  }
-}
-
 mat-form-field {
   width: 100%; /* Adjust as necessary */
   margin-bottom: 8px; /* Add space below the form field */
@@ -189,47 +171,11 @@ mat-form-field {
 // }
 
 
-.mat-form-field-infix {
-  padding-bottom: calc(0.50em - 1.5px) !important;
-  color: var(--black_color_80);
-
-  .mat-form-field-label-wrapper {
-    .mat-form-field-label {
-      color: var(--gray_color_70) !important;
-    }
-  }
-}
-
-.mat-form-field-prefix,
-.mat-form-field-suffix {
-  align-self: center;
-
-  i {
-    font-size: 16px;
-  }
-}
-
-.mat-form-field-prefix {
-  padding: 0 9px;
-
-  mat-icon {
-    text-align: center;
-    color: var(--gray_color);
-  }
-}
-
 .mat-form-field-appearance-fill .mat-form-field-flex:focus-within {
   background: #fff !important;
   border: 1px solid #ccc;
 }
 
-body {
-  // font-family: "source_sans_proregular" !important;
-  font-family: var(--nunito-font) !important;
-  font-weight: normal;
-  background-color: var(--backgroud_color);
-  overflow-x: hidden;
-}
 
 .mat-tab-label,
 .mat-tab-link,
@@ -267,42 +213,6 @@ label {
     font-size: 16px !important;
     color: var(--primary_color) !important;
     } }
-
-//   form {
-//     legend {
-//       display: flex;
-//       justify-content: space-between;
-//       font-size: var(--title);
-//       font-weight: bold;
-//       color: var(--primary_color);
-//       line-height: 24px;
-//       margin-bottom: 12px;
-
-      
-//     }
-
-//     .legend {
-//       background-color: var(--primary_color);
-//       color: var(--white_color);
-//       border-radius: 5px;
-//     }
-
-//     .formGroup {
-//       margin-bottom: 10px;
-//     }
-
-//     .checkbox {
-//       padding: 8px 0;
-//     }
-//   }
-
-
-//   .close-btn {
-//     position: fixed;
-//     right: 15px;
-//     top: 15px;
-//   }
-// }
 
 html, body {
   height: 100%;
@@ -363,12 +273,10 @@ html, body {
   // width: 93px !important;
 }
 
-// added by kamlesh
 .material-icons {
   font-family: "Material Icons";
   font-size: 20px !important;
 }
-/* Avoid fixed dimensions unless necessary */
 app-root {
   width: 100%;
   height: 100%;
@@ -376,7 +284,6 @@ app-root {
 
 
 .inner-container {
-  // padding: 5px 20px;
   overflow: hidden;
   height: auto;
   max-height: 94vh;
@@ -396,8 +303,6 @@ app-root {
 
 .mat-stroked-button,
 .mat-stroked-button:hover {
-
-  // background-color: var(--white_color) !important;
   .mat-button-focus-overlay {
     background-color: var(--white_color) !important;
   }
@@ -415,12 +320,6 @@ a:hover {
   font-size: var(--medium-font) !important;
 }
 
-.mat-checkbox-inner-container {
-  height: 14px !important;
-  width: 14px !important;
-}
-
-//common input field
 .mat-form-field-appearance-fill {
   .mat-form-field-infix {
     padding: 0.2em 0.5em 0.75em 0;
@@ -431,7 +330,6 @@ a:hover {
 
   .mat-form-field-flex {
     border-radius: 4px 4px 0 0;
-    // background-color: var(--white_color);
     border: var(--border);
   }
 }
@@ -440,10 +338,7 @@ a:hover {
 .mat-raised-button,
 .mat-icon-button,
 .mat-stroked-button,
-.mat-flat-button,
-.mat-fab,
-.mat-mini-fab,
-.mat-checkbox {
+.mat-flat-button {
   font-family: "Nunito Sans", sans-serif !important;  
   font-size: 13px !important;
 }
@@ -452,7 +347,6 @@ a:hover {
   box-shadow: unset !important;
 }
 
-//Searchbar
 button:focus {
   outline: 0 !important;
 }
@@ -500,15 +394,6 @@ ul.tab-steps li a label {
   margin-bottom: 0 !important;
 }
 
-
-.mat-dialog-title {
-  // margin: 15px 0 !important;
-  font-size: var(--large-font);
-  font-weight: bold !important;
-  color: var(--primary_color);
-}
-
-
 .greenMsg {
   font-weight: bold;
   color: white !important;
@@ -529,8 +414,6 @@ ul.tab-steps li a label {
   .mat-simple-snackbar-action {
     color: white !important;
     font-weight: normal;
-
-    // font-size: ;
     .mat-button-wrapper {
       button {
         font-size: var(--medium-font) !important;
@@ -559,8 +442,6 @@ ul.tab-steps li a label {
   .mat-simple-snackbar-action {
     color: white !important;
     font-weight: normal;
-
-    // font-size: ;
     .mat-button-wrapper {
       button {
         font-size: var(--medium-font) !important;
@@ -572,7 +453,6 @@ ul.tab-steps li a label {
 .yellowMsg {
   font-weight: bold;
   color: white !important;
-  // background-color: #ccb533;
   background-color: var(--goldYellowColor);
 
   &::before {
@@ -590,8 +470,6 @@ ul.tab-steps li a label {
   .mat-simple-snackbar-action {
     color: white !important;
     font-weight: normal;
-
-    // font-size: ;
     .mat-button-wrapper {
       button {
         font-size: var(--medium-font) !important;
@@ -666,38 +544,6 @@ ul.tab-steps li a label {
   padding-left: 0;
 }
 
-.normal-dropdown {
-
-  .mat-form-field-flex,
-  .mat-form-field-flex:focus-within {
-
-    // background-color: var(--primary_color) !important;
-    .mat-form-field-label,
-    .mat-select-arrow,
-    .mat-select-value {
-      // color: var(--white_color) !important;
-    }
-  }
-
-  .mat-form-field-infix {
-    border-top-width: 5.90625px !important;
-    border-bottom: 5.90625px solid transparent !important;
-  }
-
-  .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
-    transform: translateY(0) !important;
-    margin-right: 5px !important;
-  }
-}
-
-.normal-panel.mat-select-panel {
-
-  // background: var(--primary_color);
-  .mat-option {
-    // color: var(--white_color) !important;
-  }
-}
-
 .mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
   background-color: #fff;
 }
@@ -712,7 +558,6 @@ ul.tab-steps li a label {
 .mat-hint {
   margin-top: 0px !important;
   font-size: 11px;
-  // font-style: italic;
 }
 
 .primaryButton {
@@ -729,18 +574,6 @@ ul.tab-steps li a label {
     height: -webkit-fill-available !important;
     width: -webkit-fill-available !important;
   }
-}
-
-.cdk-drag-placeholder {
-  opacity: 1;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.padding10px {
-  padding: 20px 20px !important;
 }
 
 .masters_block {
@@ -782,16 +615,6 @@ ul.tab-steps li a label {
   height: 30px !important;
 }
 
-.mat-nav-content {
-  display: inline;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical;
-  word-wrap: break-word;
-}
-
 .fontSizeContent {
   font-size: var(--content) !important;
 }
@@ -810,89 +633,6 @@ ul.tab-steps li a label {
   background-color: var(--primary_color) !important;
 }
 
-// .mat-tree-node {
-//   background-color: var(--backgroud_color)!important;
-// }
-.uf-wrap {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
-}
-
-.fontBelowColor {
-  font-size: var(--content);
-}
-
-.colorTile {
-  height: 35px;
-  width: 35px;
-  // border: 1px var();
-  border-radius: 10px;
-}
-
-.colortext {
-  color: var(--black_color_70);
-  font-size: 12px;
-  text-transform: capitalize;
-  line-height: 0;
-  margin-top: 20px;
-  padding-left: 6px;
-}
-
-.onHoverIcon {
-  &:hover {
-    border: 1px solid var(--gray_color);
-    border-radius: 10px;
-  }
-}
-
-.selectedIconOnAddDashboardMatMenu {
-  border: 0px solid var(--gray_color);
-  border-radius: 10px;
-}
-
-.selectedIconOnAddDashboard {
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.selectColor {
-  font-size: var(--content_title);
-  font-weight: bold;
-}
-
-.colorBorder {
-  border: 1px solid var(--gray_color);
-}
-
-.matMenuIcons {
-  height: 40vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  font-size: 25px;
-}
-
-.primaryColorWithoutImp {
-  color: var(--primary_color);
-}
-
-.padding0 {
-  padding: 0 !important;
-}
-
-
-.border_top {
-  border-top: var(--border) !important;
-}
-
-
-.marginX10px {
-  margin: 0 10px;
-}
-
-
 .errorMsg {
   font-size: 11px;
   color: #d32f2f;
@@ -906,63 +646,13 @@ ul.tab-steps li a label {
   display: grid;
 }
 
-.mat-select-panel {
-  width: 100px;
-  -ms-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-}
-
-.element::-webkit-scrollbar {
-  width: 0 !important;
-}
-
 .p-4 {
   padding: 6vh 8vh 0vh !important;
 }
 
-.selectAll {
-  height: 42px;
-}
-
-.mat-option {
-  margin: 5px !important;
-}
-
-.plusicon {
-  color: var(--primary_color);
-  position: relative;
-  left: 0px;
-  top: -3px;
-  font-weight: bold;
-}
-
-.removematbtn {
-  float: right;
-  color: var(--error);
-}
-
-.removediv {
-  padding: 2px;
-  padding-top: 4px;
-  border: 1px solid var(--error);
-  border-radius: 4px;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  margin-right: 5px;
-}
-
 
 .mat-expansion-panel-spacing {
-  border: 1px solid var(--gray_color) !important; //ld
-  // border: 1px solid #666 !important;
-}
-
-.approvalStatusIcon {
-  font-size: 16px;
-  font-weight: bold;
+  border: 1px solid var(--gray_color) !important; 
 }
 
 .fontSizeTitle {
@@ -1000,19 +690,4 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-left: 12px
-}
-
-.addBtn {
-  color: var(--primary_color);
-  font-size: 24px !important;
-}
-
-.edit-Btn {
-  color: var(--gray_color) !important;
-  font-size: 20px !important;
-}
-
-.deleteBtn {
-  color: var(--error) !important;
-  font-size: 20px !important;
 }

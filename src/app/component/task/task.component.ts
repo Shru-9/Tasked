@@ -5,7 +5,8 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
 import { JsonService } from 'src/app/global/json.service';
 import { DialogComponent } from '../dialog/dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/global/common.service';
 
 @Component({
   selector: 'app-task',
@@ -13,11 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-
   status;
   loader = false;
   option1: any;
-  taskGroupInfo: any = { Status: false };
   @ViewChild("panel0") public panel0: MatDrawer;
   @Input() isDialog: boolean = false;
   inner_content_height = getComputedStyle(document.body).getPropertyValue(
@@ -30,10 +29,8 @@ export class TaskComponent implements OnInit {
   // colorPalette = this.common.colorArray.concat(this.common.colorArray);
   path: any;
   userDetails: any;
-  getGroupList = [];
   subscription: Subscription[] = [];
   labelName: any;
-  piedata: any;
   page: number = 1;
   currentpage: number = 1;
   itemsPerPage: number = 10;
@@ -50,17 +47,20 @@ export class TaskComponent implements OnInit {
   tabKey: any = [];
   tabValue: any = [];
   requestObj: any;
-  userId = 1
+  userId: any = '';
   chartData: any[];
 
   constructor(private service: JsonService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar,) {
+    private common: CommonService,
+    private router: Router,) {
 
   }
 
 
   ngOnInit(): void {
+    this.userDetails = JSON.parse(localStorage.getItem("UserDetails"))
+    if (this.userDetails.id) this.userId = this.userDetails.id
     this.getAllTasks()
   }
   getAllTasks() {
@@ -107,7 +107,8 @@ export class TaskComponent implements OnInit {
 
   deleteTask(id: number): void {
     this.service.deleteTask(id).subscribe(() => {
-      this.getAllTasks();
+      this.getAllTasks();      
+      this.common.snackbar1("Data Deleted Sucessfully","warning")
     });
   }
 
@@ -220,20 +221,9 @@ export class TaskComponent implements OnInit {
     };
   }
 
-  snackbar1(message: string, color: string) {
-    let s;
-    if (color == "success") {
-      s = "greenMsg";
-    } else if (color == "error") {
-      s = "redMsg";
-    } else if (color == "warning") {
-      s = "yellowMsg";
-    }
-    this.snackBar.open(message, "x", {
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      duration: 3000,
-      panelClass: [s],
-    });
+  logout() {
+    localStorage.removeItem("UserDetails");
+    this.router.navigate(['/login']);
+    this.common.snackbar1("User logged out.","warning")
   }
 }

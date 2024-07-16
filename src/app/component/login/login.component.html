@@ -6,18 +6,15 @@
                     <div class="">
                         <div class="middleSlider">
                             <div>
-                                <!-- <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
                                     <ng-container *ngFor="let slide of slides">
                                       <div ngxSlickItem class="slide" >
-                                        <div *ngIf="slide.link == ''" class="slideContent">
-                                          <img loading="lazy" src="{{ slide.img }}" [attr.title]="slide.title" [attr.alt]="slide.title"
-                                            width="100%">
-                                          <h2>{{slide.title}}</h2>
-                                          <p>{{slide.description}}</p>
+                                        <div  class="slideContent">
+                                          <img loading="lazy" src="{{ slide.img }}"width="100%">
                                         </div>
                                       </div>
                                     </ng-container>
-                                  </ngx-slick-carousel> -->
+                                  </ngx-slick-carousel>
                             </div>
                         </div>
                     </div>
@@ -30,7 +27,6 @@
                             <div class="logo">
                                 <img  src="/assets/images/t.png" />
                             </div>
-
                             <div class="logoText">
                                 <p class="welcome-text p-0 m-0">
                                     Tasked</p>
@@ -59,8 +55,8 @@
                                             [attr.aria-pressed]="hide">
                                             <span [ngClass]="hide ? 'icon-hide_password' : 'icon-show_password'"
                                                 matSuffix></span>
-                                            <!-- <mat-icon [ngClass]="hide ? 'gray' : ''">{{hide ? 'visibility_off' : 'visibility'}}
-                                                      </mat-icon> -->
+                                            <mat-icon [ngClass]="hide ? 'gray' : ''">{{hide ? 'visibility_off' : 'visibility'}}
+                                                      </mat-icon>
                                         </span>
                                         <mat-error *ngIf="submittedForm && f.password.errors">
                                             <ng-container *ngIf="f.password.errors.required">Password is
